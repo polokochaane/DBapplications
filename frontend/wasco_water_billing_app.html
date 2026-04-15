@@ -495,7 +495,8 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(21,1
 <script>
 var currentRole='customer';
 var payStep=1;
-const API_BASE = 'http://127.0.0.1:5000';
+const urlParams = new URLSearchParams(window.location.search);
+const API_BASE = urlParams.get('api') || (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://127.0.0.1:5000' : 'https://your-render-app.onrender.com');
 
 function showView(v){
   document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));

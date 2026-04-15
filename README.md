@@ -40,7 +40,12 @@ A full-stack web application for managing water billing, customers, payments, an
 ```
 
 ## Deployment
-- Backend: Heroku/Vercel with Postgres add-on
-- Frontend: Static hosting (Netlify/GitHub Pages)
+**Backend (API):** Render.com Web Service + Postgres (env vars)
+**Frontend:** GitHub Pages (repo Settings → Pages → main branch root)
+
+**Live system:** https://polokochaane.github.io/DBapplications/frontend/wasco_water_billing_app.html?api=YOUR_RENDER_URL
+
+Replace YOUR_RENDER_URL with backend live URL.
+
 
 License: MIT
