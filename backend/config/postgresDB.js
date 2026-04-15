@@ -1,12 +1,1 @@
-const { Pool } = require('pg');
-
-const pool = new Pool({
-    host: process.env.PG_HOST || 'localhost',
-    user: process.env.PG_USER || 'postgres',
-    password: process.env.PG_PASSWORD || 'poloko#8',
-    database: process.env.PG_DATABASE || 'water',
-    port: Number(process.env.PG_PORT || 5432),
-    ssl: process.env.PG_SSL === 'true' ? { rejectUnauthorized: false } : false
-});
-
-module.exports = pool;
+const { Pool } = require('pg');\n\n// Production requires these env vars (Vercel dashboard or Vercel Postgres)\nconst requiredEnvVars = ['PG_HOST', 'PG_USER', 'PG_PASSWORD', 'PG_DATABASE'];\nconst missingVars = requiredEnvVars.filter(v => !process.env[v]);\nif (missingVars.length > 0) {\n  console.error(`Missing required Postgres env vars: ${missingVars.join(', ')}`);\n  throw new Error('Postgres connection failed: Missing env vars. Set in Vercel dashboard.');\n}\n\nconst pool = new Pool({\n    host: process.env.PG_HOST,\n    user: process.env.PG_USER,\n    password: process.env.PG_PASSWORD,\n    database: process.env.PG_DATABASE,\n    port: Number(process.env.PG_PORT || 5432),\n    ssl: { rejectUnauthorized: false }\n});\n\nmodule.exports = pool;
